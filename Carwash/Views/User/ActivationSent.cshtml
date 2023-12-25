@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "ActivationSent";
+}
+
+<!DOCTYPE html>
+    <div class="wrapper">
+        <h2>Registro Exitoso</h2>
+        <form class="form" action="@Url.Content("http://www.vettelcarwash.somee.com/User/PasswordRecovery")" method="post">
+            <div class="input-box">
+                <div class="alert alert-warning" role="alert">
+                    Su cuenta ha sido registrada exitosamente. Se ha enviado un correo de activación a <strong>@ViewBag.ActivationEmail</strong>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="text">
+                <h3><a href="@Url.Action("Login","User")"> Volver al Inicio</a></h3>
+            </div>
+        </form>
+    </div>

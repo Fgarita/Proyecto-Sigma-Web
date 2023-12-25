@@ -1,0 +1,157 @@
+﻿@model IEnumerable<Carwash.Models.Binnacle>
+
+
+<style>
+    table {
+        margin-top: 15px;
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        /*background-color: #f5f5f5;*/
+    }
+
+    .btn-actualiza {
+        background-color: rgb(32, 44, 69);
+        color: white !important;
+        border-radius: 100px;
+        margin-right: 5px !important;
+    }
+
+    .btn-elimina {
+        background-color: #E81C2E;
+        color: white !important;
+        border-radius: 100px;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+<div class="section-header text-center">
+    <br />
+    <p>Lista de ingresos y gastos</p>
+</div>
+<div class="container">
+    <table id="requestsTable5" class="display">
+        <thead>
+            <tr>
+                <th>Tipo</th>
+                <th>Descripcion</th>
+                <th>Monto</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.type)</td>
+                    <td>@Html.DisplayFor(modelItem => item.description)</td>
+                    <td>@Html.DisplayFor(modelItem => item.amount)</td>
+                    <td>
+                        <div class="button-container">
+                            <form action="@Url.Action("Delete", "Binnacle", new { id = item.idBinnacle })" id="formularioMio-@item.idBinnacle" method="post" enctype="multipart/form-data">
+                                <form action="@Url.Action("Delete", "Binnacle", new { id = item.idBinnacle})" id="formularioMio-@item.idBinnacle" method="post" enctype="multipart/form-data">
+
+                                    <script>
+                                    var formularioMio = document.getElementById('formularioMio-@item.idBinnacle');
+                                    formularioMio.addEventListener('submit', function (event) {
+                                        event.preventDefault();
+                                        mostrarMensaje();
+                                    });
+                                    function mostrarMensaje(MaterialId) {
+                                        Swal.fire({
+                                            title: '¿Está seguro?',
+                                            text: "Se eliminara de la bitacora definitivamente",
+                                            icon: 'warning',
+                                            showCancelButton: true,
+                                            confirmButtonColor: '#d33',
+                                            cancelButtonColor: '#3085d6',
+                                            confirmButtonText: 'Eliminar',
+                                            cancelButtonText: 'Cancelar'
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                Swal.fire(
+                                                    'Eliminado!',
+                                                    'Se ha eliminado de la bitacora con exito',
+                                                    'success'
+                                                ).then(function () {
+                                                     //document.forms[7].submit();
+                                                    var formularioMio = document.getElementById('formularioMio-' + MaterialId);
+                                                    formularioMio.submit();
+                                                });
+
+                                            }
+                                        })
+                                    }
+                                    </script>
+                                    <input value="@item.idBinnacle" name="id" hidden />
+                                    <a href="@Url.Action("Edit", "Binnacle", new { id = item.idBinnacle })" class="btn btn-custom1">Actualizar</a>
+                                    <input onclick="mostrarMensaje(@item.idBinnacle)" type="button" value="Eliminar" class="btn btn-custom3" />
+                                </form>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <a href="@Url.Action("Create", "Binnacle")" class="btn btn-custom1">Crear</a>
+    <a href="@Url.Action("ExportBinnacleExcel", "Export")" class="btn btn-custom">Exportar Excel</a>
+</div>
+
+@section Scripts {
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <!-- DataTables language -->
+    <script src="https://cdn.datatables.net/plug-ins/1.13.5/i18n/es-ES.json"></script>
+    <style>
+        .paginate_button {
+            border-radius: 100px !important;
+        }
+        .paginate_button:hover {
+           
+            color: white !important;
+            border-radius: 100px !important;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            $('#requestsTable5').DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.13.5/i18n/es-ES.json"
+                },
+                "paging": true // Habilita la paginación
+            });
+        });
+    </script>
+}
+
+
+
+
+
+
+

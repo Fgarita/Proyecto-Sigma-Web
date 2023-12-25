@@ -1,0 +1,74 @@
+﻿@model Carwash.Models.users
+
+@{
+    ViewBag.Title = "Registration";
+}
+<div class="location">
+    <div class="container">
+        @using (Html.BeginForm())
+        {
+            @*@Html.ValidationSummary()*@
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="location-form">
+                        <h2 style="color: white;">Registrarse</h2>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label style="color: white;">Nombre</label>
+                                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @type = "text", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.name, "", new {style = "font-style: italic; font-size: 12px; color: red;" })
+                            </div>
+                            <br>
+                            <div class="form-group col-md-6">
+                                <label style="color: white;">Primer Apellido</label>
+                                @Html.EditorFor(model => model.first_surname, new { htmlAttributes = new { @type = "text", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.first_surname, "", new { style = "font-style: italic; font-size: 12px; color: red;" })
+                            </div>
+                            <br>
+                            <div class="form-group col-md-6">
+                                <label style="color: white;">Segundo Apellido</label>
+                                @Html.EditorFor(model => model.second_surname, new { htmlAttributes = new { @type = "text", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.second_surname, "", new {style = "font-style: italic; font-size: 12px; color: red;" })
+                            </div>
+                            <br>
+                            <div class="form-group col-md-6">
+                                <label style="color: white;">Telefono</label>
+                                @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @type = "number", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.phone, "", new {style = "font-style: italic; font-size: 12px; color: red;" })
+                            </div>
+                            <br>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label style="color: white;">Correo</label>
+                                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @type = "text", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.email, "", new { style = "font-style: italic; font-size: 12px; color: red;" })
+                            </div>
+                            <br>
+                            <div class="form-group col-md-6">
+                                <label style="color: white;">Contraseña</label>
+                                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @type = "password", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.password, "", new { style = "font-style: italic; font-size: 12px; color: red;" })
+                            </div>
+                            <br>
+                            <div class="form-group col-md-6">
+                                <label style="color: white;">Confirmar contraseña</label>
+                                @Html.Editor("confirmPassword", new { htmlAttributes = new { @type = "password", @class = "form-control" } })
+                                @Html.ValidationMessage("confirmPassword", "", new { style = "font-style: italic; font-size: 12px; color: red;" })
+                            </div>
+                            <br>
+                            <div class="input-box button col-md-12">
+                                <button class="btn btn-custom2" type="Submit">Registrarse</button>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="text">
+                                <h3>¿Ya tienes una cuenta? <a href="@Url.Action("Login", "User")">Iniciar sesión</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

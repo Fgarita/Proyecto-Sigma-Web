@@ -1,0 +1,78 @@
+﻿@model Carwash.Models.product_stock
+@{
+    ViewBag.Title = "Create";
+}
+@using Carwash.Models;
+<div class="location">
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="location-form">
+                    <h2 class="text-center" style="color: white;">Agregar Producto</h2>
+                    @using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data", id = "formularioMio" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <!-- Primera columna -->
+                                <div class="form-group">
+                                    <label style="color: white;">Nombre</label>
+                                    @Html.TextBoxFor(model => model.product_name, new { @class = "form-control", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.product_name, "", new { @class = "text-danger", style = "font-style: italic; font-size: 12px; color: red;" })
+                                </div>
+                                <div class="form-group">
+                                    <label style="color: white;">Imagen</label>
+                                    <input type="file" name="imageFile" id="imageFile" class="form-control" />
+                                    @Html.ValidationMessageFor(model => model.product_image, "", new { @class = "text-danger", style = "font-style: italic; font-size: 12px; color: red;" })
+                                </div>
+                                <div class="form-group">
+                                    <label style="color: white;">Precio</label>
+                                    @Html.TextBoxFor(model => model.price, new { @class = "form-control", type = "number", min = "2", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger", style = "font-style: italic; font-size: 12px; color: red;" })
+                                </div>
+                                <div class="form-group">
+                                    <label style="color: white;">Proveedor</label>
+                                    <select name="id_vendor" class="form-control">
+                                        <option value="0">Selecciona un proveedor</option>
+                                        @{
+
+                                            var dbContext = new carwashEntities(); // Reemplaza 'YourDbContext' con tu clase DbContext real
+                                            var vendors = dbContext.Vendors.ToList(); // Reemplaza 'Vendors' con tu DbSet real
+
+                                            foreach (var vendor in vendors)
+                                            {
+                                                <option value="@vendor.Id">@vendor.Name</option>
+                                            }
+                                        }
+                                    </select>
+                                    @Html.ValidationMessageFor(model => model.id_vendor, "", new { @class = "text-danger", style = "font-style: italic; font-size: 12px; color: red;" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Segunda columna -->
+                                <div class="form-group">
+                                    <label style="color: white;">Cantidad</label>
+                                    @Html.TextBoxFor(model => model.quantity, new { @class = "form-control", type = "number", min = "1", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.quantity, "", new { @class = "text-danger", style = "font-style: italic; font-size: 12px; color: red;" })
+                                </div>
+                                <div class="form-group">
+                                    <label style="color: white;">Descripcion</label>
+                                    @Html.TextAreaFor(model => model.description, new { @class = "form-control", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger", style = "font-style: italic; font-size: 12px; color: red;" })
+                                </div>
+                                <div class="form-group">
+                                    <input class="btn btn-custom2" type="submit" value="Guardar" />
+                                </div>
+                                <div class="form-group">
+                                    <a href="@Url.Action("Index","Product")" class="btn btn-custom3">Regresar</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

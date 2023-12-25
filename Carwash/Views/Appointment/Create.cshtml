@@ -1,0 +1,71 @@
+﻿@model Carwash.Models.appointments
+@{
+    ViewBag.Title = "Create";
+}
+@using Carwash.Models;
+<div class="center-container">
+    <div class="col-lg-3">
+        <div class="location">
+            <div class="container">
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="location-form">
+                            <h2 class="text-center" style="color: white;">Agendar cita</h2>
+                            @using (Html.BeginForm("Create", "Appointment", FormMethod.Post, new { enctype = "multipart/form-data", id = "formularioMio" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-row">
+                                    <div class="col-md-12">
+                                        <!-- Primera columna -->
+                                        <div class="form-group">
+                                            <label style="color: white;">Tipo de servicio</label>
+                                            <select name="service_id" class="form-control">
+                                                <option value="0">Selecciona un servicio</option>
+                                                @{
+
+                                                    var dbContext = new carwashEntities(); // Reemplaza 'YourDbContext' con tu clase DbContext real
+                                                    var Services = dbContext.service.ToList(); // Reemplaza 'Vendors' con tu DbSet real
+
+                                                    foreach (var Service in Services)
+                                                    {
+                                                        <option value="@Service.service_id">@Service.name</option>
+                                                    }
+                                                }
+                                            </select>
+                                            @Html.ValidationMessageFor(model => model.service_id, "", new { @class = "text-danger", style = "font-style: italic; font-size: 12px; color: red;" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="color: white;">Selecciona una Sede</label>
+                                            <select name="site" id="site" class="form-control">
+                                                <option value="0">Sede</option>
+                                                <option value="Alajuela">Sede Alajuela</option>
+                                                <option value="Turrucares">Sede Turrucares</option>
+                                            </select>
+                                            @Html.ValidationMessageFor(model => model.site, "", new { @class = "text-danger", style = "font-style: italic; font-size: 12px; color: red;" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="color: white;">Fecha</label>
+                                            @Html.TextBoxFor(model => model.date, new { @class = "form-control", @type = "date" })
+                                            @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger", style = "font-style: italic; font-size: 12px;" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="color: white;">Hora</label>
+                                            @Html.DropDownListFor(model => model.time, (SelectList)ViewBag.TimeOptions, new { @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" value="Agendar" class="btn btn-custom2" />
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-custom1" })
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

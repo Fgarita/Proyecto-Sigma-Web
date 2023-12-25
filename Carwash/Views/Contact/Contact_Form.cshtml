@@ -1,0 +1,56 @@
+﻿@model Carwash.Models.ViewModel.ContactViewModel
+
+@{
+    ViewBag.Title = "Contact_Form";
+}
+
+@using (Html.BeginForm("Contact", "Contact", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="well well-sm">
+                    <form class="form-horizontal" method="post">
+                        <fieldset>
+                            <legend class="text-center header">Contáctenos</legend>
+
+                            <div class="form">
+                                <label>Nombre</label>
+                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", id = "Name", type = "text", @required = "" })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger", style = "font-style: italic; font-size: 12px;" })
+                            </div>
+                            <div class="input-box">
+                                <label>Correo</label>
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", id = "Email", type = "text", @required = "" })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger", style = "font-style: italic; font-size: 12px;" })
+                            </div>
+
+                            <div class="input-box">
+                                <label>Asunto</label>
+                                @Html.TextBoxFor(model => model.Subject, new { @class = "form-control", id = "Subject", type = "text", @required = "" })
+                                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger", style = "font-style: italic; font-size: 12px;" })
+                            </div>
+
+                            <div class="input-box">
+                                <label>Mensaje</label>
+                                @Html.TextAreaFor(model => model.Message, new { @class = "form-control", id = "message", type = "text" })
+                                @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger", style = "font-style: italic; font-size: 12px;" })
+
+                            </div>
+                            <br>
+                            <div class="input-box button">
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

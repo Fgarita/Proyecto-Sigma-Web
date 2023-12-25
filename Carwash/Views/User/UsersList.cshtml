@@ -1,0 +1,161 @@
+﻿@model IEnumerable<Carwash.Models.users>
+
+
+<style>
+    table {
+        margin-top: 15px;
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .btn.btn-custom3 {
+        padding: 10px 30px 12px 30px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 500;
+        color: #ffffff;
+        background: #E81C2E;
+        border: none;
+        border-radius: 60px;
+        box-shadow: inset 0 0 0 0 #202C45;
+        transition: ease-out 0.5s;
+        -webkit-transition: ease-out 0.5s;
+        -moz-transition: ease-out 0.5s;
+    }
+
+        .btn.btn-custom3:hover {
+            color: #E81C2E;
+            background: #202C45;
+            box-shadow: inset 200px 0 0 0 #202C45;
+        }
+
+    .btn.btn-custom1 {
+        padding: 10px 30px 12px 30px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 500;
+        color: #ffffff;
+        background: #202C45;
+        border: none;
+        border-radius: 60px;
+        box-shadow: inset 0 0 0 0 #202C45;
+        transition: ease-out 0.5s;
+        -webkit-transition: ease-out 0.5s;
+        -moz-transition: ease-out 0.5s;
+    }
+
+        .btn.btn-custom1:hover {
+            color: #ffffff;
+            background: #202C45;
+            box-shadow: inset 200px 0 0 0 #0000FF;
+        }
+
+    .btn.btn-custom2 {
+        padding: 10px 30px 12px 30px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 500;
+        color: #ffffff;
+        background: #202C45;
+        border: none;
+        border-radius: 60px;
+        box-shadow: inset 0 0 0 0 #202C45;
+        transition: ease-out 0.5s;
+        -webkit-transition: ease-out 0.5s;
+        -moz-transition: ease-out 0.5s;
+    }
+
+        .btn.btn-custom2:hover {
+            color: #ffffff;
+            background: #202C45;
+            box-shadow: inset 1200px 0 0 0 #00FF00;
+        }
+</style>
+<div class="section-header text-center">
+    <br />
+    <p>Roles de usuarios</p>
+</div>
+<div class="container">
+    <form action="/User/UpdateAll" method="post">
+        <table id="requestsTable1" class="display">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th class="text-center">Rol</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < Model.Count(); i++)
+                {
+                    var user = Model.ElementAt(i);
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => user.name)</td>
+                        <td>@Html.DisplayFor(modelItem => user.email)</td>
+                        <td>
+                            <div class="product-info">
+                                <select name="lista[@i]" class="form-control text-center">
+                                    <option value="1" @(user.role_id == 1 ? "selected" : "")>Administrador</option>
+                                    <option value="2" @(user.role_id == 2 ? "selected" : "")>Empleado</option>
+                                    <option value="3" @(user.role_id == 3 ? "selected" : "")>Cliente</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Eliminar", "Delete", new { id = user.user_id }, new { @class = "btn btn-custom" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+        <input type="submit" value="Actualizar" class="btn btn-custom1" />
+    </form>
+</div>
+@section Scripts {
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <!-- DataTables language -->
+    <script src="https://cdn.datatables.net/plug-ins/1.13.5/i18n/es-ES.json"></script>
+    <style>
+        .paginate_button {
+            border-radius: 100px !important;
+        }
+
+            .paginate_button:hover {
+                color: white !important;
+                border-radius: 100px !important;
+            }
+    </style>
+
+    <script>$(document).ready(function () {
+            $('#requestsTable1').DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.13.5/i18n/es-ES.json"
+                },
+                "paging": true // Habilita la paginación
+            });
+        });</script>
+}

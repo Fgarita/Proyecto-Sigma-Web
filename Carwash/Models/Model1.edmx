@@ -1,0 +1,457 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="carwashModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="appointments">
+          <Key>
+            <PropertyRef Name="appointment_id" />
+          </Key>
+          <Property Name="appointment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="service_id" Type="int" Nullable="false" />
+          <Property Name="site" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Binnacle">
+          <Key>
+            <PropertyRef Name="idBinnacle" />
+          </Key>
+          <Property Name="idBinnacle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="description" Type="varchar(max)" Nullable="false" />
+          <Property Name="amount" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="notifications">
+          <Key>
+            <PropertyRef Name="notification_id" />
+          </Key>
+          <Property Name="notification_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="product_stock">
+          <Key>
+            <PropertyRef Name="id_stock" />
+          </Key>
+          <Property Name="id_stock" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_vendor" Type="int" />
+          <Property Name="product_name" Type="varchar" MaxLength="255" />
+          <Property Name="description" Type="text" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="size" Type="varchar" MaxLength="50" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="vendor_name" Type="varchar" MaxLength="100" />
+          <Property Name="product_image" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="role_id" />
+          </Key>
+          <Property Name="role_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="service">
+          <Key>
+            <PropertyRef Name="service_id" />
+          </Key>
+          <Property Name="service_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="first_surname" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="second_surname" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="phone" Type="int" Nullable="false" />
+          <Property Name="email" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="password" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="token_recovery" Type="nchar" MaxLength="100" />
+          <Property Name="role_id" Type="int" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="activation_token" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Vendors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__appointme__servi__09A971A2">
+          <End Role="service" Type="Self.service" Multiplicity="1" />
+          <End Role="appointments" Type="Self.appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="service">
+              <PropertyRef Name="service_id" />
+            </Principal>
+            <Dependent Role="appointments">
+              <PropertyRef Name="service_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__appointme__user___08B54D69">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="appointments" Type="Self.appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="appointments">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__product_s__id_ve__71D1E811">
+          <End Role="Vendors" Type="Self.Vendors" Multiplicity="0..1" />
+          <End Role="product_stock" Type="Self.product_stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="product_stock">
+              <PropertyRef Name="id_vendor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usersrole_id_398D8EEE">
+          <End Role="roles" Type="Self.roles" Multiplicity="1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="carwashModelStoreContainer">
+          <EntitySet Name="appointments" EntityType="Self.appointments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Binnacle" EntityType="Self.Binnacle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="notifications" EntityType="Self.notifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product_stock" EntityType="Self.product_stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="roles" EntityType="Self.roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="service" EntityType="Self.service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vendors" EntityType="Self.Vendors" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__appointme__servi__09A971A2" Association="Self.FK__appointme__servi__09A971A2">
+            <End Role="service" EntitySet="service" />
+            <End Role="appointments" EntitySet="appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__appointme__user___08B54D69" Association="Self.FK__appointme__user___08B54D69">
+            <End Role="users" EntitySet="users" />
+            <End Role="appointments" EntitySet="appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__product_s__id_ve__71D1E811" Association="Self.FK__product_s__id_ve__71D1E811">
+            <End Role="Vendors" EntitySet="Vendors" />
+            <End Role="product_stock" EntitySet="product_stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usersrole_id_398D8EEE" Association="Self.FK_usersrole_id_398D8EEE">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="carwashModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="appointments">
+          <Key>
+            <PropertyRef Name="appointment_id" />
+          </Key>
+          <Property Name="appointment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="service_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="service" Relationship="Self.FK__appointme__servi__09A971A2" FromRole="appointments" ToRole="service" />
+          <NavigationProperty Name="users" Relationship="Self.FK__appointme__user___08B54D69" FromRole="appointments" ToRole="users" />
+          <Property Name="site" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Binnacle">
+          <Key>
+            <PropertyRef Name="idBinnacle" />
+          </Key>
+          <Property Name="idBinnacle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="amount" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="notifications">
+          <Key>
+            <PropertyRef Name="notification_id" />
+          </Key>
+          <Property Name="notification_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="product_stock">
+          <Key>
+            <PropertyRef Name="id_stock" />
+          </Key>
+          <Property Name="id_stock" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_vendor" Type="Int32" />
+          <Property Name="product_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="size" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="vendor_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="product_image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Vendors" Relationship="Self.FK__product_s__id_ve__71D1E811" FromRole="product_stock" ToRole="Vendors" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="role_id" />
+          </Key>
+          <Property Name="role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="users" Relationship="Self.FK_usersrole_id_398D8EEE" FromRole="roles" ToRole="users" />
+        </EntityType>
+        <EntityType Name="service">
+          <Key>
+            <PropertyRef Name="service_id" />
+          </Key>
+          <Property Name="service_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="appointments" Relationship="Self.FK__appointme__servi__09A971A2" FromRole="service" ToRole="appointments" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="first_surname" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="second_surname" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="token_recovery" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="role_id" Type="Int32" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="activation_token" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="appointments" Relationship="Self.FK__appointme__user___08B54D69" FromRole="users" ToRole="appointments" />
+          <NavigationProperty Name="roles" Relationship="Self.FK_usersrole_id_398D8EEE" FromRole="users" ToRole="roles" />
+        </EntityType>
+        <EntityType Name="Vendors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="product_stock" Relationship="Self.FK__product_s__id_ve__71D1E811" FromRole="Vendors" ToRole="product_stock" />
+        </EntityType>
+        <Association Name="FK__appointme__servi__09A971A2">
+          <End Role="service" Type="Self.service" Multiplicity="1" />
+          <End Role="appointments" Type="Self.appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="service">
+              <PropertyRef Name="service_id" />
+            </Principal>
+            <Dependent Role="appointments">
+              <PropertyRef Name="service_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__appointme__user___08B54D69">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="appointments" Type="Self.appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="appointments">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__product_s__id_ve__71D1E811">
+          <End Role="Vendors" Type="Self.Vendors" Multiplicity="0..1" />
+          <End Role="product_stock" Type="Self.product_stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="product_stock">
+              <PropertyRef Name="id_vendor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usersrole_id_398D8EEE">
+          <End Role="roles" Type="Self.roles" Multiplicity="1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="carwashEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="appointments" EntityType="Self.appointments" />
+          <EntitySet Name="Binnacle" EntityType="Self.Binnacle" />
+          <EntitySet Name="notifications" EntityType="Self.notifications" />
+          <EntitySet Name="product_stock" EntityType="Self.product_stock" />
+          <EntitySet Name="roles" EntityType="Self.roles" />
+          <EntitySet Name="service" EntityType="Self.service" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <EntitySet Name="Vendors" EntityType="Self.Vendors" />
+          <AssociationSet Name="FK__appointme__servi__09A971A2" Association="Self.FK__appointme__servi__09A971A2">
+            <End Role="service" EntitySet="service" />
+            <End Role="appointments" EntitySet="appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__appointme__user___08B54D69" Association="Self.FK__appointme__user___08B54D69">
+            <End Role="users" EntitySet="users" />
+            <End Role="appointments" EntitySet="appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__product_s__id_ve__71D1E811" Association="Self.FK__product_s__id_ve__71D1E811">
+            <End Role="Vendors" EntitySet="Vendors" />
+            <End Role="product_stock" EntitySet="product_stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usersrole_id_398D8EEE" Association="Self.FK_usersrole_id_398D8EEE">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="carwashModelStoreContainer" CdmEntityContainer="carwashEntities">
+          <EntitySetMapping Name="appointments">
+            <EntityTypeMapping TypeName="carwashModel.appointments">
+              <MappingFragment StoreEntitySet="appointments">
+                <ScalarProperty Name="site" ColumnName="site" />
+                <ScalarProperty Name="appointment_id" ColumnName="appointment_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="service_id" ColumnName="service_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Binnacle">
+            <EntityTypeMapping TypeName="carwashModel.Binnacle">
+              <MappingFragment StoreEntitySet="Binnacle">
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="idBinnacle" ColumnName="idBinnacle" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="notifications">
+            <EntityTypeMapping TypeName="carwashModel.notifications">
+              <MappingFragment StoreEntitySet="notifications">
+                <ScalarProperty Name="notification_id" ColumnName="notification_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product_stock">
+            <EntityTypeMapping TypeName="carwashModel.product_stock">
+              <MappingFragment StoreEntitySet="product_stock">
+                <ScalarProperty Name="id_stock" ColumnName="id_stock" />
+                <ScalarProperty Name="id_vendor" ColumnName="id_vendor" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="vendor_name" ColumnName="vendor_name" />
+                <ScalarProperty Name="product_image" ColumnName="product_image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="carwashModel.roles">
+              <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="service">
+            <EntityTypeMapping TypeName="carwashModel.service">
+              <MappingFragment StoreEntitySet="service">
+                <ScalarProperty Name="service_id" ColumnName="service_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="carwashModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="first_surname" ColumnName="first_surname" />
+                <ScalarProperty Name="second_surname" ColumnName="second_surname" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="token_recovery" ColumnName="token_recovery" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="activation_token" ColumnName="activation_token" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vendors">
+            <EntityTypeMapping TypeName="carwashModel.Vendors">
+              <MappingFragment StoreEntitySet="Vendors">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

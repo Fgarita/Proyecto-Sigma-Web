@@ -1,0 +1,570 @@
+﻿@model Carwash.Models.ViewModel.ContactViewModel
+<!-- Carousel Start -->
+<div class="carousel">
+    <div class="container-fluid">
+        <div class="owl-carousel">
+            <div class="carousel-item">
+                <div class="carousel-img">
+                    <img src="~/UserTemp/img/carousel-1.jpg" alt="Image">
+                </div>
+                <div class="carousel-text">
+                    <h3>Lavado y detalle</h3>
+                    <h1>Manten tu auto como nuevo</h1>
+                    <p>
+                        Le ofrecemos una limpieza profunda de alta calidad y los mejores productos del mercado
+                    </p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="carousel-img">
+                    <img src="~/UserTemp/img/carousel-2.jpg" alt="Image">
+                </div>
+                <div class="carousel-text">
+                    <h3>Limpieza y detalle</h3>
+                    <h1>Servicio de calidad</h1>
+                    <p>
+                        Tenemos buen material humano y ofrecemos un servicio de calidad
+                    </p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="carousel-img">
+                    <img src="~/UserTemp/img/carousel-3.jpg" alt="Image">
+                </div>
+                <div class="carousel-text">
+                    <h3>Limpieza y detalle</h3>
+                    <h1>Limpieza de exteriores y interior</h1>
+                    <p>
+                        Tenemos buenas herramientas que nos ayudan a entregar un trabajo de calidad
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Carousel End -->
+<!-- About Start -->
+<div class="about">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="about-img">
+                    <img src="~/UserTemp/img/about.jpg" alt="Image">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="section-header text-left">
+                    <p>¿Que ofrecemos?</p>
+                    <h2>Lavado y detalle de autos </h2>
+                </div>
+                <div class="about-content">
+                    <p>
+                        Mantega su auto como nuevo con nuestros servicios de lavado y detalle
+                    </p>
+                    <ul>
+                        <li><i class="far fa-check-circle"></i>Limpieza de asientos</li>
+                        <li><i class="far fa-check-circle"></i>Aspiramos su vehiculo</li>
+                        <li><i class="far fa-check-circle"></i>Limpieza de interiores</li>
+                        <li><i class="far fa-check-circle"></i>Limpieza de vidrios</li>
+                        <li><i class="far fa-check-circle"></i>Lavado de motor</li>
+                    </ul>
+                    @if (Session["Rol"] != null)
+                    {
+
+                    }
+                    else
+                    {
+                        <a class="btn btn-custom" href="@Url.Action("Login", "User")">Ver más</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+<!-- Service Start -->
+<section id="bn">
+    <div class="service">
+        <div class="container">
+            <div class="section-header text-center">
+                <p>Beneficios</p>
+                <h2>Servicio de lavado premium</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item">
+                        <i class="flaticon-car-wash-1"></i>
+                        <h3>Lavado exterior</h3>
+                        <p style="text-align: justify;">Ofrecemos excelentes productos para realizar el lavado externo de su vehículo con las mejores condiciones del mercado</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item">
+                        <i class="flaticon-car-wash"></i>
+                        <h3>Lavado interior</h3>
+                        <p style="text-align: justify;">Ofrecemos un gran personal humano el cual realiza el lavado de interiores de forma excelente con los mejores productos </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item">
+                        <i class="flaticon-vacuum-cleaner"></i>
+                        <h3>Aspirar el interior del auto</h3>
+                        <p style="text-align: justify;">Todos nuestros paquetes incluyen el aspirado interior de tu automóvil, si prefieres omitir el aspirado para optimizar tu tiempo, puedes indicárselo a nuestro personal.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item">
+                        <i class="flaticon-seat"></i>
+                        <h3>Lavado y limpieza de asientos</h3>
+                        <p style="text-align: justify;">Se utilizan productos de alta calidad para el mantenimiento y limpieza de los asientos del auto</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item">
+                        <i class="flaticon-car-service"></i>
+                        <h3>Limpieza de vidrios</h3>
+                        <p style="text-align: justify;">La limpieza de los vidrios se realiza con un paño de microfibras de alta calidad y con los mejores productos del mercado</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item">
+                        <i class="flaticon-car-service-2"></i>
+                        <h3>Enceramos su vehiculo</h3>
+                        <p style="text-align: justify;">Con productos de alta calidad, brindamos una capa protectora a la superficie que sirve para que la pintura automotriz no sufra daños por contaminantes o marcas de agua.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item">
+                        <i class="flaticon-car-wash"></i>
+                        <h3>Realizamos revisión de aceite</h3>
+                        <p style="text-align: justify;">
+                            También ofrecemos de forma gratuita la revisión del aceite de su vehículo
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item">
+                        <i class="flaticon-brush-1"></i>
+                        <h3>limpieza de frenos</h3>
+                        <p style="text-align: justify;">Ofrecemos limpieza profunda del área de frenado lo cual ayuda a reducir la mugre y el exceso de polvo en esa área</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Service End -->
+<!-- Facts Start -->
+<div class="facts" data-parallax="scroll" data-image-src="img/facts.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="facts-item">
+                    <i class="fa fa-map-marker-alt"></i>
+                    <div class="facts-text">
+                        <h3 data-toggle="counter-up">2</h3>
+                        <p>Locaciones</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="facts-item">
+                    <i class="fa fa-user"></i>
+                    <div class="facts-text">
+                        <h3 data-toggle="counter-up">8</h3>
+                        <p>Colaboradores</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="facts-item">
+                    <i class="fa fa-users"></i>
+                    <div class="facts-text">
+                        <h3 data-toggle="counter-up">500</h3>
+                        <p>Clientes felices</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="facts-item">
+                    <i class="fa fa-check"></i>
+                    <div class="facts-text">
+                        <h3 data-toggle="counter-up">3000</h3>
+                        <p>Limpiezas realizadas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Facts End -->
+<!-- Price Start -->
+<section id="price">
+    <div class="price">
+        <div class="container">
+            <div class="section-header text-center">
+                <p>Paquetes</p>
+                <h2>Escoje tu paquete</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="price-item">
+                        <div class="price-header">
+                            <h3>Lavado basica</h3>
+                            <h2><span>₡</span><strong>7</strong><span>000</span></h2>
+                        </div>
+                        <div class="price-body">
+                            <ul>
+                                <li><i class="far fa-check-circle"></i>Lavado exterior</li>
+                                <li><i class="far fa-check-circle"></i>Aspiramos su vehiculo</li>
+                                <li><i class="far fa-check-circle"></i>Limpieza interior</li>
+                                <li><i class="far fa-check-circle"></i>Uso de productos de alta calidad</li>
+                                <li><i class="far fa-check-circle"></i>Limpieza de vidrios</li>
+                            </ul>
+                        </div>
+                        @if (Session["Rol"] != null)
+                        {
+                            <div class="price-footer">
+                                <a class="btn btn-custom" href="@Url.Action("Create", "Appointment")">Agendar ya!</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <a class="btn btn-custom" href="@Url.Action("Login", "User")">Iniciar sesión para agendar una cita.</a>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="price-item featured-item">
+                        <div class="price-header">
+                            <h3>Lavado Premium </h3>
+                            <h2><span>₡</span><strong>13</strong><span>500</span></h2>
+                        </div>
+                        <div class="price-body">
+                            <ul>
+                                <li><i class="far fa-check-circle"></i>Lavado exterior</li>
+                                <li><i class="far fa-check-circle"></i>Aspiramos su vehiculo</li>
+                                <li><i class="far fa-check-circle"></i>Limpieza interior</li>
+                                <li><i class="far fa-check-circle"></i>Uso de productos de alta calidad</li>
+                                <li><i class="far fa-check-circle"></i>Limpieza de vidrios</li>
+                                <li><i class="far fa-check-circle"></i>Lavado de mangeras de motor</li>
+                                <li><i class="far fa-check-circle"></i>Lavado por de abjo del auto</li>
+                                <li><i class="far fa-check-circle"></i>Lavado de motor</li>
+                                <li><i class="far fa-check-circle"></i>Revisión de nivel de aceite</li>
+
+                            </ul>
+                        </div>
+                        @if (Session["Rol"] != null)
+                        {
+                            <div class="price-footer">
+                                <a class="btn btn-custom" href="@Url.Action("Create", "Appointment")">Agendar ya!</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <a class="btn btn-custom" href="@Url.Action("Login", "User")">Iniciar sesión para agendar una cita.</a>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="price-item">
+                        <div class="price-header">
+                            <h3>Lavado de motor</h3>
+                            <h2><span>₡</span><strong>5</strong><span>000</span></h2>
+                        </div>
+                        <div class="price-body">
+                            <ul>
+                                <li><i class="far fa-check-circle"></i>Lavado de mangeras de motor</li>
+                                <li><i class="far fa-check-circle"></i>Lavado de motor</li>
+                                <li><i class="far fa-check-circle"></i>Revisión de nivel de aceite</li>
+                            </ul>
+                        </div>
+                        @if (Session["Rol"] != null)
+                        {
+                            <div class="price-footer">
+                                <a class="btn btn-custom" href="@Url.Action("Create", "Appointment")">Agendar ya!</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <a class="btn btn-custom" href="@Url.Action("Login", "User")">Iniciar sesión para agendar una cita.</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Price End -->
+    <!-- Location Start -->
+    <div class="location">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-header text-left">
+                        <p>Ubicación</p>
+                        <h2>Lavado de autos y detalles</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="location-item">
+                                <i class="fa fa-map-marker-alt"></i>
+                                <div class="location-text">
+                                    <h3>Sede Alajuela</h3>
+                                    <p><strong>Teléfono:</strong>+506 7296 9053</p>
+                                    <!-- Agrega la clase "text-center" al contenedor del mapa para centrarlo -->
+                                    <div class="text-center">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.2710982051376!2d-84.22423272415944!3d9.994450773128536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0f9f48256e21d%3A0x4f1f801512a3e8ea!2sVettel%20Car%20wash%20%26%20auto%20details!5e0!3m2!1sen!2scr!4v1689811729375!5m2!1sen!2scr" width="400" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="location-item">
+                                <i class="fa fa-map-marker-alt"></i>
+                                <div class="location-text">
+                                    <h3>Sede Turrucares</h3>
+                                    <p><strong>Teléfono:</strong>+506 7296 9053</p>
+                                    <!-- Agrega la clase "text-center" al contenedor del mapa para centrarlo -->
+                                    <div class="text-center">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d245.6038880874916!2d-84.31663138153796!3d9.962036534334905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0568c3310e32f%3A0x85db17dd60ced79b!2sXM6M%2BW8%2C%20Provincia%20de%20Alajuela%2C%20Turr%C3%BAcares!5e0!3m2!1ses-419!2scr!4v1691726308434!5m2!1ses-419!2scr" width="400" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <div class="location-form">
+                                <h3 class="text-center">Solicita información</h3>
+                                @using (Html.BeginForm("Contact", "Contact", FormMethod.Post))
+                                {
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label style="color: white;">Nombre</label>
+                                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", id = "Name", type = "text" })
+                                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger", style = "font-style: italic; font-size: 12px;" })
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label style="color: white;">Correo</label>
+                                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", id = "Email", type = "text" })
+                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger", style = "font-style: italic; font-size: 12px;" })
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label style="color: white;">Telefono</label>
+                                            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", id = "Phone", type = "text" })
+                                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger", style = "font-style: italic; font-size: 12px;" })
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label style="color: white;">Asunto</label>
+                                            @Html.TextBoxFor(model => model.Subject, new { @class = "form-control", id = "Subject", type = "text" })
+                                            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger", style = "font-style: italic; font-size: 12px;" })
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label style="color: white;">Mensaje</label>
+                                            @Html.TextAreaFor(model => model.Message, new { @class = "form-control", id = "Message", rows = "6" })
+                                            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger", style = "font-style: italic; font-size: 12px;" })
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12 text-center">
+                                            <button type="submit" class="btn btn-custom">Enviar</button>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Location End -->
+            <!-- Team Start si se quiere agregar luego
+            <div class="team">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <p>Meet Our Team</p>
+                        <h2>Our Engineers & Workers</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="team-item">
+                                <div class="team-img">
+                                    <img src="~/UserTemp/img/team-1.jpg" alt="Team Image">
+                                </div>
+                                <div class="team-text">
+                                    <h2>Donald John</h2>
+                                    <p>Engineer</p>
+                                    <div class="team-social">
+                                        <a href=""><i class="fab fa-twitter"></i></a>
+                                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                                        <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                        <a href=""><i class="fab fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="team-item">
+                                <div class="team-img">
+                                    <img src="~/UserTemp/img/team-2.jpg" alt="Team Image">
+                                </div>
+                                <div class="team-text">
+                                    <h2>Adam Phillips</h2>
+                                    <p>Engineer</p>
+                                    <div class="team-social">
+                                        <a href=""><i class="fab fa-twitter"></i></a>
+                                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                                        <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                        <a href=""><i class="fab fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="team-item">
+                                <div class="team-img">
+                                    <img src="~/UserTemp/img/team-3.jpg" alt="Team Image">
+                                </div>
+                                <div class="team-text">
+                                    <h2>Thomas Olsen</h2>
+                                    <p>Worker</p>
+                                    <div class="team-social">
+                                        <a href=""><i class="fab fa-twitter"></i></a>
+                                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                                        <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                        <a href=""><i class="fab fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="team-item">
+                                <div class="team-img">
+                                    <img src="~/UserTemp/img/team-4.jpg" alt="Team Image">
+                                </div>
+                                <div class="team-text">
+                                    <h2>James Alien</h2>
+                                    <p>Worker</p>
+                                    <div class="team-social">
+                                        <a href=""><i class="fab fa-twitter"></i></a>
+                                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                                        <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                        <a href=""><i class="fab fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+        </div>
+    </div>
+    <!-- Team End -->
+    <!-- Testimonial Start -->
+    <div class="testimonial">
+        <div class="container">
+            <div class="section-header text-center">
+                <p>Comentarios</p>
+                <h2>Opiniones de nuestros clientes</h2>
+            </div>
+            <div class="owl-carousel testimonials-carousel">
+                <div class="testimonial-item">
+                    <img src="~/UserTemp/img/testimonial-1.jpg" alt="Image">
+                    <div class="testimonial-text">
+                        <h3>Carlos Rojas</h3>
+                        <h4>Sede Alajuela</h4>
+                        <p style="text-align: justify;">
+                            Increíble servicio de lavado de autos! Mi vehículo quedó impecable y reluciente. El personal fue amable y profesional en todo momento.
+                        </p>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <img src="~/UserTemp/img/testimonial-2.jpg" alt="Image">
+                    <div class="testimonial-text">
+                        <h3>Ana Montero</h3>
+                        <h4>Sede Turrucares</h4>
+                        <p style="text-align: justify;">
+                            El lavacar ofrece un servicio rápido y conveniente! Pude programar una cita en línea y cuando llegué, mi automóvil fue atendido de inmediato. El personal fue amigable y se aseguró de cumplir con todas mis necesidades.
+                        </p>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <img src="~/UserTemp/img/testimonial-3.jpg" alt="Image">
+                    <div class="testimonial-text">
+                        <h3>Ricardo León</h3>
+                        <h4>Sede Alajuela</h4>
+                        <p style="text-align: justify;">
+                            Este lavacar ofrece un servicio de calidad a un precio razonable. Comparado con otros lugares, obtuve un excelente lavado a un costo accesible. Sin duda volveré a utilizar sus servicios en el futuro.
+                        </p>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <img src="~/UserTemp/img/testimonial-4.jpg" alt="Image">
+                    <div class="testimonial-text">
+                        <h3>Jonny Aguilar</h3>
+                        <h4>Sede Turrucares</h4>
+                        <p style="text-align: justify;">
+                            Me encanto el servicio de limpieza de interiores, y los productos que utilizan son muy buenos, con gusto recomendaría este negocio a amigos y conocidos. La atencion al cliente es excelente y el local de Alajuela está en una zona super accesible.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial End -->
+    <!-- Blog Start -->
+    <section id="reco">
+        <div class="blog">
+            <div class="container">
+                <div class="section-header text-center">
+                    <p>Recomendaciones</p>
+                    <h2>Recomendaciones al cliente</h2>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <img src="~/UserTemp/img/blog-1.jpg" alt="Image">
+                            </div>
+                            <div class="blog-text">
+                                <h3><a href="#">Limpieza Interna</a></h3>
+                                <p style="text-align: justify;">
+                                    Nuestros productos de alta calidad de las reconocidas marcas como Meguiars y Mirror Glaze logran que nuestro servicio de limpieza interior de su vehículo sea de las mejores en el área.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <img src="~/UserTemp/img/blog-2.jpg" alt="Image">
+                            </div>
+                            <div class="blog-text">
+                                <h3><a href="#"></a>Limpieza Externa</h3>
+                                <p style="text-align: justify;">
+                                    Antes de ingresar al lavacar, asegúrate de elegir el servicio que mejor se adapte a las necesidades de tu automóvil. Puede ser un lavado básico, uno con encerado, o incluso un lavado premium con detalles adicionales.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <img src="~/UserTemp/img/blog-3.jpg" alt="Image">
+                            </div>
+                            <div class="blog-text">
+                                <h3><a href="#">Aspirado</a></h3>
+                                <p style="text-align: justify;">
+                                    Dedicamos tiempo extra para aspirar, lavar y restregar las alfombras de tu vehículo, especialmente en las áreas donde tus pies descansan con mayor frecuencia, ya que son lugares que tienden a acumular más suciedad, Si tu
+                                    vehículo tiene tapetes de goma o tela no te preocupes, aquí realizamos toda clase de cuidados a tus alfombras y a los interiores de tu vehículo.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Blog End -->
+    </section>

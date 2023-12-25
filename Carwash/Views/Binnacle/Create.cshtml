@@ -1,0 +1,54 @@
+﻿@model Carwash.Models.Binnacle
+@{
+    ViewBag.Title = "Create";
+}
+<div class="center-container">
+    <div class="col-lg-3">
+        <div class="location">
+            <div class="container">
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="location-form">
+                            <h2 class="text-center" style="color: white;">Crear</h2>
+                            @using (Html.BeginForm("Create", "Binnacle", FormMethod.Post, new { enctype = "multipart/form-data", id = "formularioMio" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <!-- Primera columna -->
+                                            @Html.TextBoxFor(model => model.idBinnacle, new { @class = "form-control", style = "display: none;" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="color: white;">Tipo</label>
+                                            @Html.DropDownListFor(model => model.type, new SelectList(new[] { "Ingreso", "Gasto" }), "Seleccione una opcion", new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.type, "", new { @class = "text-danger", style = "font-style: italic; font-size: 12px;" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="color: white;">Descripcion</label>
+                                            @Html.TextBoxFor(model => model.description, new { @type = "text", @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger", style = "font-style: italic; font-size: 12px;" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="color: white;">Monto</label>
+                                            @Html.TextBoxFor(model => model.amount, new { @type = "number", @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger", style = "font-style: italic; font-size: 12px;" })
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" value="Guardar" class="btn btn-custom2" />
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.ActionLink("Volver", "Index", "User", null, new { @class = "btn btn-custom1" })
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

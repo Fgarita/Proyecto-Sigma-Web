@@ -1,0 +1,38 @@
+﻿@model Carwash.Models.ViewModel.RecoveryPasswordViewModel
+@{
+    ViewBag.Title = "Login";
+}
+    <div class="center-container">
+        <div class="col-lg-3">
+            <div class="location">
+                <div class="location-form">
+                    <h2 class="text-center" style="color: white;">Recuperar contraseña</h2>
+                    <form method="post" action="@Url.Content("~/User/Recovery")">
+                        @Html.HiddenFor(d => d.token)
+                        @Html.ValidationSummary()
+                        <div class="control-group">
+                            <label style="color: white;">Contraseña nueva</label>
+                            @Html.PasswordFor(model => model.Password, new { @type = "password", @class = "custom-input-width" })
+                            @Html.ValidationMessageFor(model => model.Password, null, new { style = "color:red; margin-bottom:2px;" })
+                        </div>
+                        <br>
+                        <div class="control-group">
+                            <label style="color: white;">Confirmar contraseña</label>
+                            @Html.PasswordFor(model => model.ConfirmPassword, new { @type = "password", @class = "custom-input-width" })
+                            @Html.ValidationMessageFor(model => model.ConfirmPassword, null, new { style = "color:red; margin-bottom:2px;" })
+                        </div>
+                        <div style="color:red;">
+                            @ViewBag.Error
+                        </div>
+                        <div class="input-box button">
+                            <input class="btn btn-custom" type="Submit" value="Cambiar contraseña">
+                        </div>
+                        <br>
+                        <div class="input-box button">
+                            <a href="@Url.Action("Login","User")" class="btn btn-custom">Volver al inicio</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

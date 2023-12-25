@@ -1,0 +1,337 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vettel - Carwash </title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free Website Template" name="keywords">
+    <meta content="Free Website Template" name="description">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="~/UserTemp/lib/flaticon/font/flaticon.css" rel="stylesheet">
+    <link href="~/UserTemp/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="~/UserTemp/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
+    <!-- Template Stylesheet -->
+    <link href="~/UserTemp/css/style.css" rel="stylesheet">
+    <link href="~/UserTemp/css/registration.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    @Html.Partial("_NotificationPanel")
+    <!-- Top Bar Start -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 col-md-12">
+                    <div class="logo">
+                        <a href="http://www.vettelcarwash.somee.com/User/Index">
+                            <h1>Vettel<span>CarWash</span></h1>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-7 d-none d-lg-block">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="top-bar-item">
+                                <div class="top-bar-icon">
+                                    <i class="far fa-clock"></i>
+                                </div>
+                                <div class="top-bar-text">
+                                    <h3>Horas de operación</h3>
+                                    <p>Lunes - Viernes, 8:00am - 6:00pm</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="top-bar-item">
+                                <div class="top-bar-icon">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div class="top-bar-text">
+                                    <h3>Contáctenos por WhatsApp</h3>
+                                    <p><a href="https://wa.me/+50672969053" target="_blank">+506 7296 9053</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="top-bar-item">
+                                <div class="top-bar-icon">
+                                    <i class="far fa-envelope"></i>
+                                </div>
+                                <div class="top-bar-text">
+                                    <h3>Envienos un correo</h3>
+                                    <p>Enocr88@hotmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Top Bar End -->
+    <!-- Nav Bar Start -->
+    <div class="nav-bar">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+                <a href="#" class="navbar-brand">MENU</a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav mr-auto">
+                        <a href="http://www.vettelcarwash.somee.com/User/Index" class="nav-item nav-link active">Inicio</a>
+                        <a href="http://www.vettelcarwash.somee.com/Home/About" class="nav-item nav-link">Nosotros</a>
+                        <a href="http://www.vettelcarwash.somee.com/Home/Packges" class="nav-item nav-link">Paquetes</a>
+                        <a href="http://www.vettelcarwash.somee.com/Home/Recommendations" class="nav-item nav-link">Recomendaciones</a>
+                        <a href="http://www.vettelcarwash.somee.com/Home/Benefits" class="nav-item nav-link">Beneficios</a>
+                        @*<a href="@Url.Action("Contact_Form", "Contact")" class="nav-item nav-link">Contáctenos</a>*@
+                        @if (Session["Rol"] != null)
+                        {
+                            if (Session["Rol"].Equals("administrator"))
+                            {
+                                <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Usuarios</a>
+                                    <div class="dropdown-menu">
+                                        <a href="http://www.vettelcarwash.somee.com/User/UsersList" class="dropdown-item">Roles de Usuarios</a>
+                                    </div>
+                                </div>
+                                <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Inventario</a>
+                                    <div class="dropdown-menu">
+                                        <a href="http://www.vettelcarwash.somee.com/Product/Index" class="dropdown-item">Lista Productos</a>
+                                        <a href="http://www.vettelcarwash.somee.com/Vendor/Index" class="dropdown-item">Lista proveedores</a>
+                                    </div>
+                                </div>
+                                <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Citas</a>
+                                    <div class="dropdown-menu">
+                                        <a href="http://www.vettelcarwash.somee.com/Appointment/Index" class="dropdown-item">Mis Citas</a>
+                                        <a href="http://www.vettelcarwash.somee.com/Appointment/Create" class="dropdown-item">Obtener una Cita</a>
+                                        <a href="http://www.vettelcarwash.somee.com/Appointment/UsersAppointments" class="dropdown-item">Citas de los usuarios</a>
+                                    </div>
+                                </div>
+                                <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Servicios</a>
+                                    <div class="dropdown-menu">
+                                        <a href="http://www.vettelcarwash.somee.com/Service/Index" class="dropdown-item">Lista de servicios</a>
+                                        <a href="http://www.vettelcarwash.somee.com/Service/Create" class="dropdown-item">Crear un servicio</a>
+                                    </div>
+                                </div>
+                                <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Facturación</a>
+                                    <div class="dropdown-menu">
+                                        @Html.ActionLink("Gastos", "Index", "Binnacle", new { id = 1 }, new { @class = "dropdown-item" })
+                                        @Html.ActionLink("Ingreso", "Index", "Binnacle", new { id = 2 }, new { @class = "dropdown-item" })
+                                    </div>
+                                </div>
+                            }
+                            else if (Session["Rol"].Equals("user"))
+                            {
+                                <a href="http://www.vettelcarwash.somee.com/Appointment/UsersAppointments" class="nav-item nav-link">Citas usuarios</a>
+                                <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Inventario</a>
+                                    <div class="dropdown-menu">
+                                        <a href="http://www.vettelcarwash.somee.com/Product/Index" class="dropdown-item">Lista Productos</a>
+                                        <a href="http://www.vettelcarwash.somee.com/Vendor/Index" class="dropdown-item">Lista proveedores</a>
+                                    </div>
+                                </div>
+                                <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Facturación</a>
+                                    <div class="dropdown-menu">
+                                        @Html.ActionLink("Ingreso", "Index", "Binnacle", new { id = 2 }, new { @class = "dropdown-item" })
+                                    </div>
+                                </div>
+                            }
+                            else if (Session["Rol"].Equals("customer"))
+                            {
+                                <a href="http://www.vettelcarwash.somee.com/Appointment/Index" class="nav-item nav-link">Mis Citas</a>
+                                <div class="ml-auto">
+                                    <a class="btn btn-custom" href="http://www.vettelcarwash.somee.com/Appointment/Create">Obtener una Cita</a>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <a href="http://www.vettelcarwash.somee.com/User/Login" class="nav-item nav-link">Iniciar sesión</a>
+                        }
+                        @if (Session["Username"] != null)
+                        {
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Bienvenido, @Session["Username"].ToString()</a>
+                                <div class="dropdown-menu">
+                                    <a href="http://www.vettelcarwash.somee.com/User/UserEdit" class="dropdown-item">Mi perfil</a>
+                                    <a href="http://www.vettelcarwash.somee.com/User/Logout" class="dropdown-item">Cerrar Sesión</a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class=" body-content">
+        @RenderBody()
+        <br />
+    </div>
+    <!-- Nav Bar End -->
+    <!-- Footer Start -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-link">
+                        <h2>Hablemos</h2>
+                        <a href="https://goo.gl/maps/rpPaxwbZGoehTXLE9"><i class=" fa fa-map-marker-alt"></i>  XQVH+Q8G, 122, Provincia de Alajuela, Alajuela"</a>
+                        <a href="https://goo.gl/maps/WDxWVe4TDQ1UDHmy7"><i class=" fa fa-map-marker-alt"></i>  XM6M+W8, Provincia de Alajuela, Turrúcares"</a>
+                        <a href="tel:+50672969053"><i class="fa fa-phone-alt"></i>  +506 7296 9053</a>
+                        <a href="mailto:Enocr88@hotmail.com"><i class="fa fa-envelope"></i>  Enocr88@hotmail.com</a>
+                    </div>
+                    <div class="footer-social">
+                        <a class="btn" href="https://www.facebook.com/people/Vettel-Car-Wash-Auto-Detail/100069707577329/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn" href="https://www.instagram.com/TuUsuarioInstagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a class="btn" href="https://waze.com/ul?ll=9.994450773128536,-84.22423272415944&navigate=yes" target="_blank"><i class="fab fa-waze"></i></a>
+                    </div>
+                </div>
+                @*<div class="col-lg-4 col-md-6">
+                        <div class="footer-link">
+                            <h2>Links populares</h2>
+                            <a href="">Sobre nosotros</a>
+                            <a href="">Contactarnos</a>
+                            <a href="">Nuestro servicios</a>
+                            <a href="">Puntos de servicio</a>
+                            <a href="">Precios</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-link">
+                            <h2>Links muy utiles</h2>
+                            <a href="">Terminos de uso</a>
+                            <a href="">Politicas de privacidad</a>
+                            <a href="">Cookies</a>
+                            <a href="">Ayuda</a>
+                            <a href="">Preguntas</a>
+                        </div>
+                    </div>*@
+                @*<div class="col-lg-3 col-md-6">
+                        <div class="footer-newsletter">
+                            <h2>Información</h2>
+                            <form>
+                                <input class="form-control" placeholder="Nombre completo">
+                                <input class="form-control" placeholder="Email">
+                                <button class="btn btn-custom">Enviar</button>
+                            </form>
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+        <div class="container copyright">
+            <p>&copy; <a href="#">Vettel CarWash</a>, Derechos reservados. </p>
+        </div>
+    </div>
+    <!-- Footer End -->
+    <!-- Back to top button -->
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- Pre Loader -->
+    <div id="loader" class="show">
+        <div class="loader"></div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="~/UserTemp/lib/easing/easing.min.js"></script>
+    <script src="~/UserTemp/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/UserTemp/lib/waypoints/waypoints.min.js"></script>
+    <script src="~/UserTemp/lib/counterup/counterup.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="~/UserTemp/mail/jqBootstrapValidation.min.js"></script>
+    <script src="~/UserTemp/mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="~/UserTemp/js/main.js"></script>
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <!-- DataTables language -->
+    <script src="https://cdn.datatables.net/plug-ins/1.13.5/i18n/es-ES.json"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            function showNotifications() {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("NotificationsList", "User")',
+                success: function (data) {
+                    var notificationsBox = $('#box');
+                    notificationsBox.empty();
+
+                    if (data && data.length > 0) {
+                        $('#bell span').text(data.length);
+                        $.each(data, function (index, notification) {
+                            notificationsBox.append('<div class="notifications-item">' +
+                                '<i class="fa-sharp fa-light fa-circle-exclamation"></i>' +
+                                '<div class="text">' +
+                                '<h4>' + notification.description + '</h4>' +
+                                '</div>' +
+                                '</div>');
+                        });
+                    } else {
+                        $('#bell span').text('0');
+                        notificationsBox.append('<h2>No hay notificaciones</h2>');
+                    }
+                },
+                error: function () {
+                }
+            });
+        }
+        showNotifications();
+
+        $('#bell').click(function (e) {
+            var notificationsBox = $('#box');
+            var isOpen = notificationsBox.css('opacity') === '1';
+
+            if (isOpen) {
+                notificationsBox.css('height', '0px');
+                notificationsBox.css('opacity', '0');
+            } else {
+                showNotifications();
+
+                notificationsBox.css('height', 'auto');
+                notificationsBox.css('opacity', '1');
+            }
+        });
+        });
+    </script>
+    @RenderSection("Scripts", required: false)
+
+    <script>
+        function callPhoneNumber(phoneNumber) {
+            window.location.href = 'tel:' + phoneNumber;
+        }
+    </script>
+</body>
+</html>
+

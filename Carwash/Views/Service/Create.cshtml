@@ -1,0 +1,48 @@
+﻿@model Carwash.Models.service
+@{
+    ViewBag.Title = "Edit";
+}
+<div class="center-container">
+    <div class="col-lg-3">
+        <div class="location">
+            <div class="container">
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="location-form">
+                            <h2 class="text-center" style="color: white;">Crear Servicio</h2>
+                            @using (Html.BeginForm("Create", "Service", FormMethod.Post, new { enctype = "multipart/form-data", id = "formularioMio" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @*@Html.ValidationSummary()*@
+                                <div class="form-row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <!-- Primera columna -->
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(model => model.service_id, new { @class = "form-control", style = "display: none;" })
+                                                <label style="color: white;">Tipo de servicio</label>
+                                                @Html.TextBoxFor(model => model.name, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger", style = "font-style: italic; font-size: 12px; color: red;" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <!-- Segunda columna -->
+                                            <div class="form-group">
+                                                <input class="btn btn-custom2" type="submit" value="Guardar" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <a href="@Url.Action("Index","Service")" class="btn btn-custom1">Regresar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

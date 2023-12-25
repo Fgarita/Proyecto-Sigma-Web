@@ -1,0 +1,53 @@
+﻿@model Carwash.Models.users
+@{
+    ViewBag.Title = "UserEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var loggedInUser = HttpContext.Current.Session["LoggedInUser"] as Carwash.Models.users;
+}
+<div class="center-container">
+    <div class="col-lg-3">
+        <div class="location">
+            <div class="container">
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="location-form">
+                            <h2 class="text-center" style="color: white;">Mis Datos</h2>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <!-- Primera columna -->
+                                    <div class="form-group">
+                                        <div class="col-md-4 gradient-custom text-center text-white"
+                                             style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                                                 alt="Avatar" class="img-fluid my-5" style="width: 850px;" />
+                                            <i class="far fa-edit mb-5"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="color: white;">Nombre</label>
+                                        <p class="text-muted">@loggedInUser.name</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="color: white;">Correo</label>
+                                        <p class="text-muted">@loggedInUser.email</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="color: white;">Telefono</label>
+                                        <p class="text-muted">@loggedInUser.phone</p>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.ActionLink("Editar Perfil", "UserEdition", null, new { @class = "btn btn-custom2" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.ActionLink("Volver", "Index", "User", null, new { @class = "btn btn-custom1" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

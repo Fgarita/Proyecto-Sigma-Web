@@ -1,0 +1,190 @@
+﻿@model  IEnumerable<Carwash.Models.product_stock>
+
+
+<style>
+    table {
+        margin-top: 15px;
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .btn-actualiza {
+        background-color: rgb(32, 44, 69);
+        color: white !important;
+        border-radius: 100px;
+        margin-right: 5px !important;
+    }
+
+    .btn-elimina {
+        background-color: #E81C2E;
+        color: white !important;
+        border-radius: 100px;
+    }
+
+    .button-container {
+        display: flex;
+    }
+
+    .product_img {
+        max-width: 200px;
+        max-height: 200px;
+    }
+
+    .product_img {
+        max-width: 50px;
+        max-height: 50px;
+    }
+</style>
+<div class="section-header text-center">
+    <br />
+    <p>Productos</p>
+</div>
+<div class="container">
+
+    <table id="requestsTable4" class="display">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Proveedor</th>
+                <th>Imagen</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.product_name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.description)</td>
+                    <td>@Html.DisplayFor(modelItem => item.quantity)</td>
+                    <td>@Html.DisplayFor(modelItem => item.price)</td>
+                    <td>@Html.DisplayFor(modelItem => item.vendor_name)</td>
+                    <td><img src="@Url.Action("GetImage", "Product", new { productId = item.id_stock })" alt="Imagen del producto" class="product_img" /></td>
+                    <td>
+                        <div class="button-container">
+
+                            @if (Session["Rol"] != null)
+                            {
+                                if (Session["Rol"].Equals("administrator") || Session["Rol"].Equals("user"))
+                                {
+                                    <a href="@Url.Action("Edit", "Product", new { id = item.id_stock })" class="btn btn-custom1">Actualizar</a>
+
+                                }
+
+                            }
+
+
+                            <form action="@Url.Action("Delete", "Product", new { id = item.id_stock })" id="formularioMio-@item.id_stock" method="post" enctype="multipart/form-data">
+
+                                <script>
+                                    var formularioMio = document.getElementById('formularioMio-@item.id_stock');
+                                    formularioMio.addEventListener('submit', function (event) {
+                                        event.preventDefault();
+                                        mostrarMensaje();
+                                    });
+                                    function mostrarMensaje(MaterialId) {
+                                        Swal.fire({
+                                            title: '¿Esta seguro?',
+                                            text: "Se eliminara el material ",
+                                            icon: 'warning',
+                                            showCancelButton: true,
+                                            confirmButtonColor: '#d33',
+                                            cancelButtonColor: '#3085d6',
+                                            confirmButtonText: 'Eliminar',
+                                            cancelButtonText: 'Cancelar'
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                Swal.fire(
+                                                    'Eliminado!',
+                                                    'El material se ha eliminado con exito',
+                                                    'success'
+                                                ).then(function () {
+                                                     //document.forms[7].submit();
+                                                    var formularioMio = document.getElementById('formularioMio-' + MaterialId);
+                                                    formularioMio.submit();
+                                                });
+
+                                            }
+                                        })
+                                    }
+                                </script>
+                                <input value="@item.id_stock" name="id" hidden />
+
+                                @if (Session["Rol"] != null)
+                                {
+                                    if (Session["Rol"].Equals("administrator") || Session["Rol"].Equals("user"))
+                                    {
+                                        <input onclick="mostrarMensaje(@item.id_stock)" type="button" value="Eliminar" class="btn btn-custom3" />
+                                    }
+
+                                }
+
+
+                            </form>
+
+                        </div>
+                    </td>
+
+                </tr>
+
+            }
+        </tbody>
+    </table>
+    <br />
+    @if (Session["Rol"] != null)
+    {
+        if (Session["Rol"].Equals("administrator") || Session["Rol"].Equals("user"))
+        {
+            <a href="@Url.Action("Create", "Product")" class="btn btn-custom2">Crear</a>
+        }
+
+    }
+</div>
+@section Scripts {
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <!-- DataTables language -->
+    <script src="https://cdn.datatables.net/plug-ins/1.13.5/i18n/es-ES.json"></script>
+    <style>
+        .paginate_button {
+            border-radius: 100px !important;
+        }
+
+            .paginate_button:hover {
+                color: white !important;
+                border-radius: 100px !important;
+            }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            $('#requestsTable4').DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.13.5/i18n/es-ES.json"
+                },
+                "paging": true // Habilita la paginación
+            });
+        });
+    </script>
+}

@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "Packges";
+}
+
+<!-- Price Start -->
+<section id="Price">
+    <div class="price">
+        <div class="container">
+            <div class="section-header text-center">
+                <p>Paquetes</p>
+                <h2>Escoje tu paquete</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="price-item">
+                        <div class="price-header">
+                            <h3>Lavado basica</h3>
+                            <h2><span>₡</span><strong>7</strong><span>000</span></h2>
+                        </div>
+                        <div class="price-body">
+                            <ul>
+                                <li><i class="far fa-check-circle"></i>Lavado exterior</li>
+                                <li><i class="far fa-check-circle"></i>Aspiramos su vehiculo</li>
+                                <li><i class="far fa-check-circle"></i>Limpieza interior</li>
+                                <li><i class="far fa-check-circle"></i>Uso de productos de alta calidad</li>
+                                <li><i class="far fa-check-circle"></i>Limpieza de vidrios</li>
+                            </ul>
+                        </div>
+                        @if (Session["Rol"] != null)
+                        {
+                            <div class="price-footer">
+                                <a class="btn btn-custom" href="@Url.Action("Create", "Appointment")">Agendar ya!</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <a class="btn btn-custom" href="@Url.Action("Login", "User")">Iniciar sesión para agendar una cita.</a>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="price-item featured-item">
+                        <div class="price-header">
+                            <h3>Lavado Premium </h3>
+                            <h2><span>₡</span><strong>13</strong><span>500</span></h2>
+                        </div>
+                        <div class="price-body">
+                            <ul>
+                                <li><i class="far fa-check-circle"></i>Lavado exterior</li>
+                                <li><i class="far fa-check-circle"></i>Aspiramos su vehiculo</li>
+                                <li><i class="far fa-check-circle"></i>Limpieza interior</li>
+                                <li><i class="far fa-check-circle"></i>Uso de productos de alta calidad</li>
+                                <li><i class="far fa-check-circle"></i>Limpieza de vidrios</li>
+                                <li><i class="far fa-check-circle"></i>Lavado de mangeras de motor</li>
+                                <li><i class="far fa-check-circle"></i>Lavado por de abjo del auto</li>
+                                <li><i class="far fa-check-circle"></i>Lavado de motor</li>
+                                <li><i class="far fa-check-circle"></i>Revisión de nivel de aceite</li>
+
+                            </ul>
+                        </div>
+                        @if (Session["Rol"] != null)
+                        {
+                            <div class="price-footer">
+                                <a class="btn btn-custom" href="@Url.Action("Create", "Appointment")">Agendar ya!</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <a class="btn btn-custom" href="@Url.Action("Login", "User")">Iniciar sesión para agendar una cita.</a>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="price-item">
+                        <div class="price-header">
+                            <h3>Lavado de motor</h3>
+                            <h2><span>₡</span><strong>5</strong><span>000</span></h2>
+                        </div>
+                        <div class="price-body">
+                            <ul>
+                                <li><i class="far fa-check-circle"></i>Lavado de mangeras de motor</li>
+                                <li><i class="far fa-check-circle"></i>Lavado de motor</li>
+                                <li><i class="far fa-check-circle"></i>Revisión de nivel de aceite</li>
+                            </ul>
+                        </div>
+                        @if (Session["Rol"] != null)
+                        {
+                            <div class="price-footer">
+                                <a class="btn btn-custom" href="@Url.Action("Create", "Appointment")">Agendar ya!</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <a class="btn btn-custom" href="@Url.Action("Login", "User")">Iniciar sesión para agendar una cita.</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Price End -->
